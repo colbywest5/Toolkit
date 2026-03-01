@@ -13,7 +13,7 @@ allowed-tools:
 
 # /tk:task mode [message]
 
-**Tasks:** map, build, design, debug, qa, review, clean, doc, workflow, deploy, init, resume, learn, status, help
+**Tasks:** map, build, design, debug, qa, review, clean, doc, workflow, deploy, init, resume, learn, status, tdd, e2e, fix, instinct, help
 **Modes:** light (fast), medium (balanced), heavy (comprehensive + parallel SubAgents)
 
 ## Parse & Route
@@ -43,6 +43,10 @@ TASKS:
   resume   Resume previous work
   learn    Capture a learning
   status   Show project status
+  tdd      Test-driven development workflow
+  e2e      End-to-end testing with Playwright
+  fix      Fix build/type errors incrementally
+  instinct Continuous learning (status/evolve/export)
   help     This help
 
 MODES:

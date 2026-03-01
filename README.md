@@ -20,13 +20,16 @@
 
 If you don't hit your token limit daily are you even doing anything? 
 
-The best AI coding workflows--[Get Shit Done](https://github.com/glittercowboy/get-shit-done), [Ralph](https://github.com/snarktank/ralph), Anthropic's official plugins--each solve different problems. TK combines their best patterns into one cohesive toolkit:
+The best AI coding workflows--[Get Shit Done](https://github.com/glittercowboy/get-shit-done), [Ralph](https://github.com/snarktank/ralph), [Everything Claude Code](https://github.com/affaan-m/everything-claude-code), Anthropic's official plugins--each solve different problems. TK combines their best patterns into one cohesive toolkit:
 
 - **Structured workflows** -- 7-phase build process, not chaos
 - **Parallel agents** -- Multiple specialists working simultaneously  
 - **Context engineering** -- Fresh context, no degradation
 - **Security scanning** -- Catch vulnerabilities before they ship
 - **Rules enforcement** -- Your standards, every time
+- **22+ skills** -- Deep knowledge bases for TDD, patterns, security
+- **Language rules** -- TypeScript, Python, Go coding standards
+- **Continuous learning** -- Capture patterns, evolve instincts
 
 ---
 
@@ -121,6 +124,20 @@ Restart Claude Code, then run:
 | `/tk:review` | Code review with parallel reviewers. Only reports high-confidence issues. |
 | `/tk:clean` | Removes dead code, unused deps, console.logs. Refactors for clarity. |
 | `/tk:design` | Creates distinctive frontend interfaces--unique typography, bold colors, no AI slop. |
+
+### Testing & TDD
+
+| Command | What it does |
+|---------|--------------|
+| `/tk:tdd` | **Test-driven development.** Write tests first (RED), implement (GREEN), refactor. Enforces 80%+ coverage. |
+| `/tk:e2e` | **End-to-end testing with Playwright.** Generates Page Objects, test journeys, captures screenshots/videos on failure. |
+| `/tk:fix` | **Incremental build fixing.** Parses errors, fixes one at a time, verifies no regressions. |
+
+### Continuous Learning
+
+| Command | What it does |
+|---------|--------------|
+| `/tk:instinct` | **Manage learned patterns.** `status` shows instincts, `evolve` clusters into skills, `export` backs up. |
 
 ### Configuration
 
@@ -340,6 +357,42 @@ Generate comprehensive, self-contained HTML documentation with visual diagrams, 
 
 ---
 
+## Skills Library
+
+TK includes 22+ deep knowledge bases (merged from [Everything Claude Code](https://github.com/affaan-m/everything-claude-code)):
+
+| Category | Skills |
+|----------|--------|
+| **Methodology** | `tdd-workflow`, `verification-loop`, `eval-harness`, `continuous-learning-v2` |
+| **Patterns** | `backend-patterns`, `frontend-patterns`, `api-design`, `coding-standards` |
+| **Infrastructure** | `database-migrations`, `deployment-patterns`, `docker-patterns`, `postgres-patterns` |
+| **Testing** | `e2e-testing`, `security-review` |
+| **Languages** | `golang-patterns`, `golang-testing`, `python-patterns`, `python-testing` |
+| **Workflow** | `search-first`, `strategic-compact`, `iterative-retrieval` |
+| **UI** | `ui-design-brain` (comprehensive component reference) |
+
+Skills are auto-referenced by commands when relevant.
+
+---
+
+## Language Rules
+
+Coding standards organized by language (from ECC):
+
+```
+rules/
+├── common/          # Universal principles
+├── typescript/      # TypeScript/JavaScript
+├── python/          # Python
+└── golang/          # Go
+```
+
+Rules cover: coding style, git workflow, testing, performance, patterns, hooks, agents, security.
+
+See [rules/README.md](rules/README.md) for details.
+
+---
+
 ## File Structure
 
 All TK files are now consolidated under `.tk/`:
@@ -396,12 +449,30 @@ TK follows the Claude Code plugin format:
 Toolkit/
 +-- .claude-plugin/
 |   +-- plugin.json      # Plugin metadata
-+-- commands/            # Slash commands
-|   +-- _shared.md       # Shared behaviors
-|   +-- map.md
-|   +-- build.md
-|   +-- design.md
++-- agents/              # 12 specialized agents
+|   +-- code-architect.md
+|   +-- code-explorer.md
+|   +-- code-reviewer.md
+|   +-- tdd-guide.md
+|   +-- e2e-runner.md
 |   +-- ...
++-- commands/            # 22 slash commands
+|   +-- _shared.md       # Shared behaviors
+|   +-- build.md
+|   +-- tdd.md
+|   +-- e2e.md
+|   +-- ...
++-- rules/               # Language-specific rules
+|   +-- common/
+|   +-- typescript/
+|   +-- python/
+|   +-- golang/
++-- skills/              # 22 knowledge bases
+|   +-- tdd-workflow/
+|   +-- backend-patterns/
+|   +-- ui-design-brain/
+|   +-- ...
++-- hooks/               # Event hooks
 +-- mcp/                 # MCP integration
 +-- tk.md                # Main router
 +-- README.md
@@ -415,6 +486,7 @@ Built from patterns in:
 
 | Source | Contribution |
 |--------|--------------|
+| [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) | Skills library, language rules, continuous learning, TDD/E2E patterns |
 | [Get Shit Done](https://github.com/glittercowboy/get-shit-done) | Context engineering, multi-agent orchestration |
 | [Ralph](https://github.com/snarktank/ralph) | Autonomous loops, fresh context patterns |
 | [claude-mem](https://github.com/thedotmack/claude-mem) | Progressive disclosure, token-efficient context loading |
