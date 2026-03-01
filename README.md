@@ -145,12 +145,26 @@ Restart Claude Code, then run:
 |---------|--------------|
 | `/tk:rules` | **Set global rules for all agents.** No emojis, no placeholders, no browser popups, etc. Rules are enforced on every command. |
 
+### Visual Documentation (visual-explainer)
+
+Beautiful, self-contained HTML pages that visually explain systems, code changes, plans, and data. No ASCII art -- real typography, dark/light themes, interactive Mermaid diagrams with zoom and pan.
+
+| Command | What it does |
+|---------|--------------|
+| `/tk:workflow` | **Visual workflow documentation.** Generate HTML explaining any system or flow. Supports `--slides` for slide deck output. |
+| `/tk:diagram` | **Generate beautiful diagrams.** Architecture, flowcharts, sequences, ER diagrams, state machines, mind maps. Opens in browser. |
+| `/tk:slides` | **Magazine-quality slide decks.** Narrative arc, visual richness, compositional variety. Self-contained HTML. |
+| `/tk:diff` | **Visual diff review.** Before/after architecture comparison, code review analysis, decision log. Supports branches, commits, PRs. |
+| `/tk:plan-review` | **Plan vs. codebase analysis.** Compare implementation plans against current code. Risk assessment, gap analysis. |
+| `/tk:recap` | **Rebuild mental model.** Project state, recent decisions, cognitive debt hotspots. Perfect for returning to a project. |
+
+**Anti-AI-Slop:** These commands explicitly forbid generic AI aesthetics (Inter + violet gradients, neon dashboards, emoji icons). Every output uses distinctive typography, intentional color palettes, and professional design.
+
 ### Documentation & Analysis
 
 | Command | What it does |
 |---------|--------------|
 | `/tk:doc` | Generates README, API docs, architecture diagrams, inline comments. |
-| `/tk:workflow` | **Visual workflow documentation.** Generates self-contained HTML with SVG diagrams, executive summaries, data flow analysis, real-world examples, and improvement recommendations. Supports `--audience:customer` and `--audience:executive` modes. |
 | `/tk:opinion` | **Honest project audit.** Asks questions, then gives direct feedback on architecture, code quality, dependencies, testing, docs, and MVP progress. |
 | `/tk:init` | Scaffolds new projects with your preferred stack and tooling. |
 | `/tk:resume` | Picks up where you left off if interrupted. |
@@ -293,40 +307,37 @@ When using any mode, TK spawns specialized SubAgents in parallel:
 
 ---
 
-## `/tk:workflow` -- Visual Documentation
+## Visual Documentation (visual-explainer)
 
-Generate comprehensive, self-contained HTML documentation with visual diagrams, analytical charts, and OSI model analysis:
+TK's visual commands are powered by [visual-explainer](https://github.com/nicobailon/visual-explainer) -- an agent skill that turns complex terminal output into styled HTML pages you actually want to read.
 
 ```bash
-/tk:workflow heavy How does the authentication flow work?
-/tk:workflow medium Document the payment processing system
+/tk:workflow How does authentication work?
+/tk:diagram our microservice architecture  
+/tk:slides Q4 Technical Review
+/tk:diff main
+/tk:plan-review docs/refactor-plan.md
+/tk:recap 2w
 ```
 
-**Audience Modes:**
-```bash
-/tk:workflow heavy --audience:customer How does checkout work?
-/tk:workflow medium --audience:executive Document the payment system
-```
+**Anti-AI-Slop Design Principles:**
 
-| Flag | What to Show | What to Hide |
-|------|--------------|--------------|
-| (default) | Everything (internal documentation) | Only secrets |
-| `--audience:customer` | User-facing features, frontend, UX flows | Backend, database, API internals |
-| `--audience:executive` | High-level overview, metrics, recommendations | Implementation details |
+Every generated page explicitly avoids generic AI aesthetics:
+- **Forbidden:** Inter + violet gradients, neon dashboards, emoji icons, gradient text
+- **Required:** Distinctive font pairings, intentional color palettes, visual hierarchy
+- **Constrained aesthetics:** Blueprint, Editorial, Paper/ink, IDE themes (Dracula, Nord, etc.)
 
 **What it generates:**
 
 | Feature | Description |
 |---------|-------------|
-| **Dual-Page Output** | Full Analysis + Executive Summary views with navigation |
-| **OSI Model Analysis** | Maps all components to OSI layers 1-7 with visual diagram |
-| **Analytical Charts** | Pie charts, bar charts, line graphs, sparklines (pure SVG) |
-| **PDF Export** | One-click export button on both pages |
-| **Architecture Diagrams** | System overview, data flow, component interactions |
-| **Executive Summary** | Condensed view for stakeholders and leadership |
-| **Improvement Recommendations** | Prioritized suggestions with business impact |
-| **Secrets Redaction** | Auto-redacts API keys, passwords, tokens (security-first) |
-| **Professional Icons** | SVG icons only, no emojis |
+| **Self-contained HTML** | Single file, no dependencies, opens in any browser |
+| **Light/Dark themes** | Automatic OS theme detection |
+| **Mermaid diagrams** | Flowcharts, sequences, ER, state machines -- with zoom/pan controls |
+| **Slide decks** | Magazine-quality presentations with narrative arc |
+| **Diff reviews** | Before/after architecture comparison with code review |
+| **Plan reviews** | Risk assessment, gap analysis, cognitive debt detection |
+| **Project recaps** | Mental model rebuild for returning to projects |
 
 ---
 
@@ -359,7 +370,7 @@ Generate comprehensive, self-contained HTML documentation with visual diagrams, 
 
 ## Skills Library
 
-TK includes 22+ deep knowledge bases (merged from [Everything Claude Code](https://github.com/affaan-m/everything-claude-code)):
+TK includes 23+ deep knowledge bases:
 
 | Category | Skills |
 |----------|--------|
@@ -369,7 +380,8 @@ TK includes 22+ deep knowledge bases (merged from [Everything Claude Code](https
 | **Testing** | `e2e-testing`, `security-review` |
 | **Languages** | `golang-patterns`, `golang-testing`, `python-patterns`, `python-testing` |
 | **Workflow** | `search-first`, `strategic-compact`, `iterative-retrieval` |
-| **UI** | `ui-design-brain` (comprehensive component reference) |
+| **UI** | `ui-design-brain` (60+ component patterns, anti-patterns, layout best practices) |
+| **Visual** | `visual-explainer` (HTML diagrams, slides, diff reviews, anti-AI-slop design) |
 
 Skills are auto-referenced by commands when relevant.
 
@@ -456,21 +468,28 @@ Toolkit/
 |   +-- tdd-guide.md
 |   +-- e2e-runner.md
 |   +-- ...
-+-- commands/            # 22 slash commands
++-- commands/            # 28 slash commands
 |   +-- _shared.md       # Shared behaviors
 |   +-- build.md
 |   +-- tdd.md
 |   +-- e2e.md
+|   +-- workflow.md      # Visual workflow (visual-explainer)
+|   +-- diagram.md       # Diagrams (visual-explainer)
+|   +-- slides.md        # Slide decks (visual-explainer)
+|   +-- diff.md          # Diff review (visual-explainer)
+|   +-- plan-review.md   # Plan review (visual-explainer)
+|   +-- recap.md         # Project recap (visual-explainer)
 |   +-- ...
 +-- rules/               # Language-specific rules
 |   +-- common/
 |   +-- typescript/
 |   +-- python/
 |   +-- golang/
-+-- skills/              # 22 knowledge bases
++-- skills/              # 23 knowledge bases
 |   +-- tdd-workflow/
 |   +-- backend-patterns/
 |   +-- ui-design-brain/
+|   +-- visual-explainer/  # Visual documentation engine
 |   +-- ...
 +-- hooks/               # Event hooks
 +-- mcp/                 # MCP integration
@@ -486,7 +505,9 @@ Built from patterns in:
 
 | Source | Contribution |
 |--------|--------------|
+| [visual-explainer](https://github.com/nicobailon/visual-explainer) | Visual documentation engine, anti-AI-slop design principles, slide decks, diff/plan reviews |
 | [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) | Skills library, language rules, continuous learning, TDD/E2E patterns |
+| [ui-design-brain](https://github.com/carmahhawwari/ui-design-brain) | 60+ UI component patterns, layout best practices, anti-patterns |
 | [Get Shit Done](https://github.com/glittercowboy/get-shit-done) | Context engineering, multi-agent orchestration |
 | [Ralph](https://github.com/snarktank/ralph) | Autonomous loops, fresh context patterns |
 | [claude-mem](https://github.com/thedotmack/claude-mem) | Progressive disclosure, token-efficient context loading |

@@ -13,7 +13,7 @@ allowed-tools:
 
 # /tk:task mode [message]
 
-**Tasks:** map, build, design, debug, qa, review, clean, doc, workflow, deploy, init, resume, learn, status, tdd, e2e, fix, instinct, help
+**Tasks:** map, build, design, debug, qa, review, clean, doc, workflow, diagram, slides, diff, plan-review, recap, deploy, init, resume, learn, status, tdd, e2e, fix, instinct, help
 **Modes:** light (fast), medium (balanced), heavy (comprehensive + parallel SubAgents)
 
 ## Parse & Route
@@ -28,31 +28,42 @@ allowed-tools:
 ```
 /tk:task mode [message]
 
-TASKS:
-  map      Map project, create context (RUN FIRST)
-  build    Build/create something
-  design   Create distinctive frontend interfaces
-  debug    Fix a problem  
-  qa       Test something
-  review   Review code
-  clean    Cleanup codebase
-  doc      Generate documentation
-  workflow Visual workflow docs (SVG diagrams + analysis)
-  deploy   Deploy to production
-  init     Initialize new project
-  resume   Resume previous work
-  learn    Capture a learning
-  status   Show project status
-  tdd      Test-driven development workflow
-  e2e      End-to-end testing with Playwright
-  fix      Fix build/type errors incrementally
-  instinct Continuous learning (status/evolve/export)
-  help     This help
+CORE TASKS:
+  map        Map project, create context (RUN FIRST)
+  build      Build/create something
+  design     Create distinctive frontend interfaces
+  debug      Fix a problem  
+  qa         Test something
+  review     Review code
+  clean      Cleanup codebase
+  doc        Generate documentation
+  deploy     Deploy to production
+  init       Initialize new project
+  resume     Resume previous work
+  learn      Capture a learning
+  status     Show project status
+
+VISUAL (visual-explainer):
+  workflow   Visual workflow docs (SVG diagrams + analysis)
+  diagram    Generate beautiful standalone HTML diagrams
+  slides     Generate magazine-quality slide decks
+  diff       Visual diff review with architecture comparison
+  plan-review Compare a plan against codebase with risk assessment
+  recap      Rebuild mental model of project state
+
+TESTING:
+  tdd        Test-driven development workflow
+  e2e        End-to-end testing with Playwright
+  fix        Fix build/type errors incrementally
+
+LEARNING:
+  instinct   Continuous learning (status/evolve/export)
+  help       This help
 
 MODES:
-  light    Fast, minimal interaction
-  medium   Balanced, key decisions
-  heavy    Comprehensive, parallel SubAgents + DOCS
+  light      Fast, minimal interaction
+  medium     Balanced, key decisions
+  heavy      Comprehensive, parallel SubAgents + DOCS
 
 EXAMPLES:
   /tk:map heavy This is a Next.js e-commerce app
@@ -60,6 +71,14 @@ EXAMPLES:
   /tk:design heavy Landing page for a premium fitness app
   /tk:debug light API returns 500 on large requests
   /tk:qa heavy Test everything before launch
-  /tk:workflow heavy How does the payment processing work?
-  /tk:workflow medium Document the authentication flow
+  
+  VISUAL EXAMPLES:
+  /tk:workflow How does authentication work?
+  /tk:diagram our microservice architecture
+  /tk:slides Q4 Technical Review
+  /tk:diff main
+  /tk:diff #42
+  /tk:plan-review docs/refactor-plan.md
+  /tk:recap 2w
+  /tk:recap 30d --slides
 ```
